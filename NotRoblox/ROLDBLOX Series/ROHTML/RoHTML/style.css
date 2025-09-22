@@ -1,0 +1,1592 @@
+@import url('font-declarations/fonts.css');
+
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+#background-image {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background-size: cover;
+    background-position: center;
+}
+
+.confirmation-page {
+    display: none; /* Hidden by default */
+    flex-direction: column;
+    justify-content: flex-start; /* Align to the top */
+    padding-top: 25vh; /* Push content down from the top */
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.confirmation-page .confirmation-text {
+    color: white;
+    font-family: 'Source Sans Pro Bold';
+    font-size: 36px; /* Set as requested */
+    text-align: center;
+    /* Mimicking Roblox UI properties for accurate spacing */
+    height: 200px;
+    width: 100%;
+    max-width: 800px; /* Set width to 800px as requested */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.confirmation-page .confirmation-buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
+.confirmation-page .confirmation-button {
+    background-color: transparent;
+    border-style: solid;
+    border-image-slice: 8 fill;
+    border-image-width: 8px;
+    border-image-source: url('content/textures/ui/Settings/MenuBarAssets/MenuButton.png');
+    color: white;
+    cursor: pointer;
+    width: 200px;
+    height: 50px;
+    font-family: 'Source Sans Pro Bold';
+    font-size: 20px;
+    padding-bottom: 4px; /* Visually moves text up ~2px */
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.confirmation-page .confirmation-button:hover,
+.confirmation-page .confirmation-button.selected {
+    border-image-source: url('content/textures/ui/Settings/MenuBarAssets/MenuButtonSelected.png');
+} 
+* {
+    cursor: none; /* Hide the default cursor */
+    z-index: 999999;
+}
+
+body {
+    overflow: hidden; /* Prevent scrollbars from appearing */
+}
+
+#custom-cursor {
+    background-color: transparent;
+    z-index: 999999;
+} 
+
+#debug-cursor {
+    position: fixed;
+    pointer-events: none;
+    z-index: 999999;
+    background-image: url('content/textures/ArrowFarCursor.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    transform: translate(-50%, -50%);
+    /* Hide cursor initially until AHK moves it */
+    display: none;
+}
+#debug-cursor.hovering {
+    background-image: url('content/textures/ArrowCursor.png');
+}
+/* Hide default cursor everywhere */
+* {
+    cursor: none !important;
+}
+/* 
+This stylesheet is for the tonemapping effect layer.
+This layer is a fullscreen div that tints the screen.
+*/
+
+#effect-layer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 0;
+    pointer-events: none;
+    
+    /* The background color and opacity will be controlled by effects.js */
+    background-color: transparent;
+    opacity: 0;
+} 
+/* 
+  Styles for the Help Page
+  Recreated based on Help.lua and reference images.
+*/
+
+.settings-page#page-help {
+  padding: 0; /* Removed padding for a tighter layout */
+  box-sizing: border-box;
+  display: block;
+  overflow-y: auto;
+}
+
+.help-content-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.help-row {
+  display: flex;
+  gap: 8px; /* From PC_TABLE_SPACING logic */
+}
+
+/* Add a negative margin to subsequent rows to create the overlap effect */
+.help-row + .help-row {
+  margin-top: -25px;
+}
+
+.help-group {
+  flex: 1; /* Each group takes equal width */
+  min-width: 0; /* Prevents overflow issues with flexbox */
+}
+
+.help-group-title {
+  font-family: 'Source Sans Pro Bold';
+  font-size: 14px; /* Reduced font size */
+  color: white;
+  text-align: left;
+  height: 30px;
+  margin-bottom: 0px; /* Spacing between title and first keybind row */
+  padding-left: 9px; /* From textIndent = 9 */
+  display: flex;
+  align-items: center;
+}
+
+.keybind-row {
+  display: grid;
+  grid-template-columns: 50% 50%; /* Two-column layout for action and key */
+  align-items: center;
+  background-color: rgba(163, 162, 165, 0.5); /* Adjusted for a closer match */
+  height: 42px;
+  margin-bottom: 2px;
+  padding: 0 9px; /* From textIndent = 9 */
+  box-sizing: border-box; /* Re-added for predictable layout */
+}
+
+.keybind-action {
+  font-family: 'Source Sans Pro Bold';
+  font-size: 14px; /* Reduced font size */
+  color: white;
+  text-align: left;
+}
+
+.keybind-key {
+  font-family: 'Source Sans Pro';
+  font-size: 14px; /* Reduced font size */
+  color: white;
+  text-align: left;
+} 
+/* Makes the entire page click-through by default */
+body {
+    pointer-events: none;
+}
+
+/* Makes the main UI containers and their children clickable */
+#topbar, #settings-clipping-shield {
+    pointer-events: auto;
+} 
+/* css/loading.css */
+
+/* This container will overlay the whole page */
+#loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgb(45, 45, 45);
+    background-image: url('content/textures/loading/darkLoadingTexture.png');
+    background-repeat: repeat;
+    z-index: 10000;
+    font-family: 'Source Sans Pro Light', sans-serif;
+    color: white;
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out;
+}
+
+#loading-screen.loading-screen-hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Info frame positioning (bottom-left) */
+#info-frame {
+    position: absolute;
+    bottom: 110px;
+    left: 5%;
+    width: 40%;
+    height: 25px;
+}
+
+#place-label {
+    position: absolute;
+    top: 0;
+    left: -4px;
+    width: 100%;
+    height: 80px;
+    font-size: calc(22px * 3);
+    text-align: left;
+    display: flex;
+    align-items: flex-start;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-family: 'Source Sans Pro', sans-serif; /* Use specific bold font */
+    -webkit-text-stroke: 1px black; /* Add stroke */
+}
+
+#creator-label {
+    position: absolute;
+    top: 75px;
+    left: 0;
+    width: 100%;
+    height: 30px;
+    font-size: calc(16px * 1.25);
+    font-family: 'Source Sans Pro', sans-serif; /* Use specific regular font */
+    text-align: left;
+    display: flex;
+    align-items: flex-start;
+}
+
+/* Graphics frame positioning (bottom-right) */
+#graphics-frame {
+    position: absolute;
+    bottom: 50px;
+    right: 5%;
+    width: 120px;
+    height: 120px;
+}
+
+#loading-image {
+    width: 100%;
+    height: 100%;
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+#loading-text {
+    position: absolute;
+    top: 0;
+    left: 28px;
+    width: calc(100% - 56px);
+    height: 100%;
+    font-size: 16px;
+    font-family: 'Source Sans Pro Light', sans-serif; /* Use specific regular font */
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    text-align: left;
+    text-wrap: nowrap;
+}
+
+/* Mobile adjustments (example) */
+@media (max-width: 768px) {
+    #info-frame {
+        left: 20px;
+        bottom: 120px;
+    }
+
+    #graphics-frame {
+        right: 75px;
+        bottom: 75px;
+        width: 70px;
+        height: 70px;
+    }
+
+    #loading-text {
+        font-size: 12px;
+        left: 12px;
+        width: calc(100% - 14px);
+    }
+}
+.player-list-container {
+    width: 100%;
+}
+
+.player-label-unknown {
+    width: 100%;
+    height: 62px;
+    flex-shrink: 0; /* Prevent from shrinking */
+    box-sizing: border-box;
+    position: relative; /* Needed for the pseudo-element */
+}
+
+.player-label-unknown::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 0;
+    border-style: solid;
+    border-width: 9px;
+    border-image-source: url("content/textures/ui/dialog_white.png");
+    border-image-slice: 9 fill;
+    border-image-repeat: stretch;
+    opacity: 0.15;
+}
+
+.player-icon {
+    position: absolute;
+    z-index: 2;
+    width: 36px;
+    height: 36px;
+    top: 12px;
+    left: 12px;
+    background-image: url('images/User.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.player-name-label {
+    position: absolute;
+    z-index: 2;
+    left: 60px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 20px;
+    color: white;
+    white-space: nowrap;
+}
+/* Styles for the Record Page based on the 3-row structure */
+
+.record-title-row,
+.record-body-row,
+.record-button-row {
+    box-sizing: border-box;
+    width: 100%;
+    padding-left: 18px; /* Corresponds to original padding */
+    padding-right: 18px;
+}
+
+.record-title-row {
+    padding-bottom: 5px;
+}
+
+.record-body-row {
+    padding-bottom: 15px;
+}
+
+.record-button-row {
+    display: flex;
+    justify-content: flex-end; /* Align button to the right */
+}
+
+.record-title {
+    font-family: 'Source Sans Pro Bold', sans-serif;
+    font-size: 28px;
+    color: white;
+}
+
+.record-description {
+    font-family: 'Source Sans Pro Light', sans-serif;
+    font-size: 20px;
+    color: white;
+    line-height: 1.2;
+}
+
+/* Size the button based on the provided properties */
+.record-button-row .image-button {
+    font-family: 'Source Sans Pro Bold', sans-serif;
+    font-size: 20px;
+    width: 300px;
+    height: 44px;
+}
+
+.record-video-button .button-text, .record-screenshot-button .button-text {
+    color: white;
+    font-size: 15px;
+    font-family: 'Source Sans Pro Bold', sans-serif;
+}
+
+.record-video-button .button-subtext, .record-screenshot-button .button-subtext {
+    color: white;
+    font-size: 12px;
+    font-family: 'Source Sans Pro Light', sans-serif;
+    opacity: 0.7;
+}
+
+#record-video-quality-label, #record-video-save-path-label {
+    font-size: 15px;
+    font-family: 'Source Sans Pro Bold', sans-serif;
+    color: #393b3d;
+}
+
+/* New styles for the Report Abuse Page, based on the in-game reference image */
+#page-report {
+    display: block;
+    justify-content: initial;
+    align-items: initial;
+    background-color: transparent;
+    box-sizing: border-box;
+    position: relative; /* Add this to establish stacking context */
+}
+
+/* --- Dropdown Button Styles --- */
+/* This class is added to an .image-button to modify it */
+.dropdown-button {
+    display: flex;
+    justify-content: flex-start; /* Align text to the left */
+    align-items: center;
+    position: relative;
+    width: 100%;
+    padding-left: 15px; /* Indent the text */
+    z-index: 1; /* Base z-index for buttons */
+}
+
+.dropdown-button-text {
+    font-family: 'Source Sans Pro Bold';
+    font-size: 16px; /* Matching the setting-label */
+    pointer-events: none; /* Prevent text from interfering with clicks */
+}
+
+.dropdown-button-icon {
+    position: absolute;
+    right: 15px; /* Position icon on the right */
+    top: 50%;
+    transform: translateY(-50%);
+    width: 15px;
+    height: 10px;
+    background-image: url(content/textures/ui/Settings/DropDown/DropDown.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    pointer-events: none; /* Prevent icon from interfering with clicks */
+}
+
+/* --- Fullscreen Dropdown --- */
+#report-dropdown-fullscreen-frame {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.8); /* Darker than settings for focus */
+    z-index: 999999; /* Extremely high z-index to ensure it's on top */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: auto; /* Ensure clicks are captured */
+}
+
+#report-dropdown-fullscreen-frame.hidden {
+    display: none;
+    pointer-events: none;
+}
+
+#report-dropdown-selection-frame {
+    width: 400px;
+    height: auto;
+    max-height: 80vh;
+    position: relative; /* Add positioning context */
+    z-index: 1000000; /* Even higher than the fullscreen frame */
+    
+    /* Nine-slice border */
+    border-style: solid;
+    border-image-source: url('content/textures/ui/Settings/MenuBarAssets/MenuButton.png');
+    border-image-slice: 8 46 8 6 fill; /* top, right, bottom, left */
+    border-image-width: 8px 46px 8px 6px;
+    border-image-repeat: repeat;
+    
+    box-sizing: border-box;
+    padding: 10px;
+    display: flex; /* To contain the scroller */
+    flex-direction: column;
+    pointer-events: auto; /* Ensure clicks are captured */
+}
+
+#report-dropdown-scrolling-frame {
+    width: 100%;
+    flex-grow: 1;
+    overflow-y: auto;
+    padding-right: 15px; /* space for scrollbar */
+    position: relative; /* Add positioning context */
+    z-index: 1000001; /* Higher than the selection frame */
+}
+
+.report-dropdown-option {
+    width: 100%;
+    height: 50px;
+    background-color: transparent;
+    border: none;
+    color: white;
+    font-family: 'Source Sans Pro';
+    font-size: 24px;
+    text-align: center;
+    padding-left: 10px;
+    cursor: pointer;
+    position: relative; /* Add positioning context */
+    z-index: 1000002; /* Higher than the scrolling frame */
+}
+
+.report-dropdown-option:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Custom Scrollbar for Dropdown */
+#report-dropdown-scrolling-frame::-webkit-scrollbar {
+  width: 12px;
+}
+
+#report-dropdown-scrolling-frame::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+#report-dropdown-scrolling-frame::-webkit-scrollbar-thumb {
+  background-color: #fff;
+  border-image-source: url('content/textures/ui/Scroll/scroll-middle.png');
+  border-image-slice: 4;
+  border-image-width: 4px;
+  border-style: solid;
+}
+
+#report-dropdown-scrolling-frame::-webkit-scrollbar-button:start:decrement,
+#report-dropdown-scrolling-frame::-webkit-scrollbar-button:end:increment {
+    height: 12px;
+    display: block;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+#report-dropdown-scrolling-frame::-webkit-scrollbar-button:start:decrement {
+    background-image: url('content/textures/ui/Scroll/scroll-top.png');
+}
+
+#report-dropdown-scrolling-frame::-webkit-scrollbar-button:end:increment {
+    background-image: url('content/textures/ui/Scroll/scroll-bottom.png');
+}
+
+
+.report-description-row {
+    align-items: stretch;
+    padding: 0;
+    height: auto; /* Let it expand */
+    min-height: 120px; /* Keep minimum height */
+}
+
+.report-description-row .setting-control {
+    width: 100%;
+    height: 100%;
+}
+
+#report-description-textarea {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(163, 162, 165, 1); /* From BackgroundColor3 + Transparency */
+    border: 1px solid rgb(27, 42, 53); /* From BorderColor3 */
+    border-radius: 0px; /* No radius specified */
+    color: rgb(49, 49, 49); /* From TextColor3 */
+    font-family: 'Source Sans Pro'; /* From Font: SourceSans */
+    font-size: 16px; /* From TextSize */
+    padding: 8px;
+    box-sizing: border-box;
+    resize: none;
+    min-height: 100px; /* Ensure a minimum height */
+}
+
+#report-description-textarea::placeholder {
+    color: rgb(27, 42, 53); /* From PlaceholderColor3 */
+}
+
+
+/* Submit Button Row */
+.report-submit-row {
+    display: flex;
+    justify-content: flex-end; /* Align button to the right */
+    padding-top: 8px;
+    height: 60px; /* Give it some space */
+}
+
+/* The button itself now uses the .image-button style from settings.css */
+#report-submit-button {
+    width: 200px; 
+    height: 50px;
+    font-size: 18px;
+    font-family: 'Source Sans Pro Bold';
+    padding-bottom: 4px;
+    margin-left: auto; /* Backup in case flex fails */
+}
+
+
+#report-submit-button:disabled {
+    /* The .image-button style doesn't have a disabled state, so we add one. */
+    border-image-source: url('content/textures/ui/Settings/MenuBarAssets/MenuButton.png');
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Disable hover effect for description and submit rows */
+.report-description-row:hover,
+.report-submit-row:hover {
+    background-color: transparent;
+}
+
+/* --- Utility & Modal --- */
+.hidden {
+    display: none !important;
+}
+
+/*
+  A scrollbar that uses the middle texture with rounded corners.
+  This is a robust compromise that avoids the problematic end-cap images.
+*/
+
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    /* Create rounded corners */
+    border-radius: 7px;
+
+    /* Use the middle image as a tiling background */
+    background-image: url('content/textures/ui/Scroll/scroll-middle.png');
+    background-repeat: repeat-y;
+    background-position: center;
+
+    /* A subtle border to help define the edge */
+    background-clip: padding-box;
+}
+
+::-webkit-scrollbar-button {
+    display: none;
+} 
+
+
+/* Each font file is defined as its own family to avoid browser font-weight mapping. */
+body {
+    -webkit-user-select: none; /* Safari */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE 10+ */
+    user-select: none; /* Standard */
+    background-color: transparent;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    color: white;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+img {
+    -webkit-user-drag: none; /* Safari */
+    -khtml-user-drag: none; /* Konqueror HTML */
+    -moz-user-drag: none; /* Firefox */
+    -o-user-drag: none; /* Opera */
+    -webkit-user-select: none; /* Safari */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE 10+ */
+    user-select: none; /* Standard */
+}
+/* -- Settings Menu -- */
+#settings-clipping-shield {
+    position: fixed;
+    top: 36px; /* Start below the topbar */
+    left: 0;
+    width: 100%;
+    height: calc(100% - 36px); /* Adjust height to fill remaining space */
+    z-index: 100;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+#settings-shield {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: -101%; /* Animate from above the container */
+    left: 0;
+    background-color: rgba(41, 41, 41, 0.7);
+    transition: top 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    pointer-events: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column; /* To stack menu and confirmation pages */
+}
+
+#settings-clipping-shield.settings-visible #settings-shield {
+    top: 0;
+    pointer-events: all;
+}
+
+#settings-menu-container {
+    width: 95%;
+    height: auto;
+    max-width: 800px;
+    max-height: 95%;
+    aspect-ratio: 800 / 730;
+    background-color: transparent;
+    position: relative;
+    /* Use Flexbox for robust vertical layout */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#settings-hub-bar {
+    /* Positioned by Flexbox, not absolutely */
+    width: 100%;
+    height: 60px;
+    flex-shrink: 0; /* Prevent from shrinking */
+    box-sizing: border-box;
+    position: relative; /* Needed for the pseudo-element */
+}
+
+#settings-hub-bar::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 0; /* Sit behind the content (the tabs) */
+    
+    border-style: solid;
+    border-width: 4px;
+    border-image-source: url('content/textures/ui/Settings/MenuBarAssets/MenuBackground.png');
+    border-image-slice: 4 fill;
+    border-image-repeat: stretch;
+}
+
+#settings-tabs-container {
+    display: flex;
+    height: 100%;
+    width: 100%;
+}
+
+.settings-tab {
+    position: relative;
+    flex: 1; /* Each tab takes up 1/5 of the space */
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Center the content (icon + text) */
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0 15px; /* Add some padding on the sides */
+    color: white;
+    gap: 12px; /* Add space between icon and text */
+}
+
+.settings-tab .tab-icon,
+.settings-tab .tab-title {
+    opacity: 0.5;
+    transition: none;
+}
+
+.tab-icon img {
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: 100%;
+    display: block;
+} 
+
+.settings-tab.active .tab-icon,
+.settings-tab.active .tab-title {
+    opacity: 1;
+}
+
+.settings-tab .tab-title {
+    font-family: 'Source Sans Pro Bold';
+    font-size: 20px;
+}
+
+.settings-tab .tab-highlight {
+    display: none;
+    position: absolute;
+    bottom: 0px; /* Move down to cover parent's bottom border */
+    left: 0;
+    width: 100%;
+    height: 6px;
+    box-sizing: border-box;
+    /* Create a 3px border on the left and right, and 0 on top/bottom */
+    border-width: 0 3px;
+    border-style: solid;
+    border-color: transparent;
+    /* Slice the source image 3px from the left and right edges */
+    border-image-source: url('content/textures/ui/Settings/MenuBarAssets/MenuSelection.png');
+    border-image-slice: 0 3 fill; /* top/bottom slice is 0, left/right is 3 */
+    border-image-repeat: stretch; /* Stretch the middle part */
+}
+
+.settings-tab.active .tab-highlight {
+    display: block;
+}
+
+#page-view-clipper {
+    /* Positioned by Flexbox, not absolutely */
+    width: 100%;
+    flex-grow: 1; /* Grow to fill available space */
+    height: auto; /* Height is now dynamic */
+    overflow: hidden;
+    overflow-y: auto; /* Allow scrolling for content */
+    background-color: transparent;
+    padding: 10px 0;
+}
+
+#page-view {
+    display: flex;
+    transition: transform 0.3s ease-in-out;
+    width: 500%; /* 5 pages */
+    height: 100%;
+}
+
+.settings-page {
+    width: 20%; /* Each page takes up a fifth of the container */
+    height: 100%;
+    /* padding: 20px; */
+    box-sizing: border-box;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#page-settings,
+#page-report,
+#page-record {
+    display: block; /* Revert for settings page to allow scrolling */
+    justify-content: initial;
+    align-items: initial;
+}
+
+#bottom-button-frame {
+    /* No longer absolutely positioned */
+    width: 100%;
+    height: 70px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-shrink: 0; /* Prevent from shrinking */
+}
+
+.bottom-bar-button {
+    position: relative;
+    background-color: transparent;
+    border-style: solid;
+    border-image-slice: 8 fill;
+    border-image-width: 8px;
+    border-image-source: url('content/textures/ui/Settings/MenuBarAssets/MenuButton.png');
+    color: white;
+    cursor: pointer;
+    width: 260px;
+    height: 70px;
+    font-family: 'Source Sans Pro Bold';
+}
+
+.bottom-bar-button .hint-icon {
+    position: absolute;
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: 100%;
+    left: 15%;
+    top: calc(50% - 2px);
+    transform: translate(-50%, -50%);
+    display: block;
+}
+
+.bottom-bar-button span {
+    position: absolute;
+    width: 75%;
+    height: 90%;
+    left: 25%;
+    top: calc(50% - 2px);
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    color: white;
+    /* font-family is inherited from .bottom-bar-button */
+}
+
+/* -- Settings Page Content -- */
+.settings-scroller {
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    box-sizing: border-box;
+}
+
+.setting-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 50px;
+    margin-bottom: 0px;
+    padding: 0 8px;
+    /* transition: background-color 0.1s ease-in-out; */ /* Removed for instant hover */
+}
+
+.setting-row:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.setting-label {
+    font-family: 'Source Sans Pro Bold';
+    font-size: 20px;
+    color: white;
+    line-height: 1.2; /* Improve vertical alignment */
+}
+
+.setting-control {
+    width: 500px; /* Further increased width for a very spacious layout */
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* -- Slider Control -- */
+.slider-control {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+}
+
+.slider-steps-container {
+    display: flex;
+    align-items: center;
+    height: 24px;
+    width: calc(100% - 100px); /* Space for buttons */
+}
+
+.slider-step {
+    flex: 1;
+    height: 100%;
+    background-color: rgba(78, 84, 96, 0.64); /* NON_SELECTED_COLOR with transparency */
+    margin: 0 2px;
+    cursor: pointer;
+}
+
+.slider-step.active {
+    background-color: #00A2FF; /* SELECTED_COLOR */
+}
+
+.slider-step:first-child { margin-left: 0; border-radius: 3px 0 0 3px; }
+.slider-step:last-child { margin-right: 0; border-radius: 0 3px 3px 0; }
+
+
+.slider-button {
+    width: 50px;
+    height: 50px;
+    background-color: transparent;
+    border: none;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 30px 30px;
+    cursor: pointer;
+    opacity: 0.8;
+    transition: opacity 0.2s;
+}
+.slider-button:hover {
+    opacity: 1;
+}
+.slider-button.left {
+    background-image: url('content/textures/ui/Settings/Slider/Less.png');
+}
+.slider-button.right {
+    background-image: url('content/textures/ui/Settings/Slider/More.png');
+}
+
+/* -- Selector Control -- */
+.selector-control {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.selector-text-container {
+    flex-grow: 1;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+}
+
+.selector-text {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: none; /* Hidden by default */
+    align-items: center;
+    justify-content: center;
+    font-family: 'Source Sans Pro';
+    font-size: 20px;
+    background-color: transparent;
+    color: #c8c8c8;
+}
+
+.selector-text.active {
+    display: flex; /* Show the active one */
+    opacity: 0.7; /* Make it slightly transparent by default */
+}
+
+.setting-row:hover .selector-text.active {
+    opacity: 1;
+    color: #FFFFFF; /* Make it fully white on hover */
+}
+
+.selector-control .selector-option-label {
+    padding: 0 10px;
+    height: 25px;
+    line-height: 25px;
+    background-color: transparent;
+    border-radius: 5px;
+    border: 1px solid transparent;
+    color: white;
+    cursor: pointer;
+    opacity: 0.7; /* Default transparency */
+    transition: opacity 0.15s ease-in-out, background-color 0.15s ease-in-out;
+}
+
+.selector-control .selector-option-label.selected {
+    background-color: #6a6a6a;
+    opacity: 1; /* Selected option is always fully opaque */
+}
+
+/* Make options fully visible when the row is hovered */
+.setting-row:hover .selector-control .selector-option-label {
+    opacity: 1;
+}
+
+.selector-control .selector-option-label:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* --- Slider --- */
+.slider-control {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+}
+
+.slider-steps-container {
+    display: flex;
+    align-items: center;
+    height: 24px;
+    width: calc(100% - 100px); /* Space for buttons */
+}
+
+.slider-step {
+    flex: 1;
+    height: 100%;
+    background-color: rgba(78, 84, 96, 0.64); /* NON_SELECTED_COLOR with transparency */
+    margin: 0 2px;
+    cursor: pointer;
+}
+
+.slider-step.active {
+    background-color: #00A2FF; /* SELECTED_COLOR */
+}
+
+.slider-step:first-child { margin-left: 0; border-radius: 3px 0 0 3px; }
+.slider-step:last-child { margin-right: 0; border-radius: 0 3px 3px 0; }
+
+
+.slider-button {
+    width: 50px;
+    height: 50px;
+    background-color: transparent;
+    border: none;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 30px 30px;
+    cursor: pointer;
+    opacity: 0.8;
+    transition: opacity 0.2s;
+}
+.slider-button:hover {
+    opacity: 1;
+}
+.slider-button.left {
+    background-image: url('content/textures/ui/Settings/Slider/Less.png');
+}
+.slider-button.right {
+    background-image: url('content/textures/ui/Settings/Slider/More.png');
+}
+
+.slider-control .slider-value {
+    font-family: 'Source Sans Pro Light';
+    font-size: 18px;
+    color: white;
+    opacity: 0.5;
+    width: 30px; /* Give it a fixed width */
+    text-align: right;
+}
+
+
+/* --- Reverted Animation System --- */
+
+@keyframes slide-out-left {
+    from { 
+        transform: translateX(0); 
+        opacity: 0.5;
+    }
+    35% {
+        opacity: 0;
+    }
+    to { 
+        transform: translateX(-125%); 
+        opacity: 0;
+    }
+}
+
+@keyframes slide-in-from-right {
+    from { 
+        transform: translateX(125%);
+        opacity: 0; 
+    }
+    65% {
+        opacity: 0;
+    }
+    to { 
+        transform: translateX(0);
+        opacity: 0.5;
+    }
+}
+
+@keyframes slide-out-right {
+    from { 
+        transform: translateX(0);
+        opacity: 0.5;
+    }
+    35% {
+        opacity: 0;
+    }
+    to { 
+        transform: translateX(125%);
+        opacity: 0;
+    }
+}
+
+@keyframes slide-in-from-left {
+    from { 
+        transform: translateX(-125%);
+        opacity: 0;
+    }
+    65% {
+        opacity: 0;
+    }
+    to { 
+        transform: translateX(0);
+        opacity: 0.5;
+    }
+}
+
+.slide-out-left {
+    display: flex !important;
+    animation: slide-out-left 0.2s ease-in-out forwards;
+}
+
+.slide-in-from-right {
+    display: flex !important;
+    animation: slide-in-from-right 0.2s ease-in-out forwards;
+}
+
+.slide-out-right {
+    display: flex !important;
+    animation: slide-out-right 0.2s ease-in-out forwards;
+}
+
+.slide-in-from-left {
+    display: flex !important;
+    animation: slide-in-from-left 0.2s ease-in-out forwards;
+}
+
+
+.selector-button, .slider-button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    width: 50px;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 0.7;
+    transition: none; /* Disable transitions */
+}
+
+.selector-button:hover, .slider-button:hover {
+    opacity: 1;
+}
+
+.selector-button.left {
+    background-image: url('content/textures/ui/Settings/Slider/Left.png');
+}
+
+.selector-button.right {
+    background-image: url('content/textures/ui/Settings/Slider/Right.png');
+}
+
+.slider-button.left {
+    background-image: url('content/textures/ui/Settings/Slider/Less.png');
+}
+
+.slider-button.right {
+    background-image: url('content/textures/ui/Settings/Slider/More.png');
+}
+
+.image-button {
+    background-color: transparent;
+    border-style: solid;
+    border-image-slice: 8 fill;
+    border-image-width: 8px;
+    border-image-source: url('content/textures/ui/Settings/MenuBarAssets/MenuButton.png');
+    color: white;
+    cursor: pointer;
+    width: 100%; /* Fill available space */
+    height: 40px;
+    font-family: 'Source Sans Pro Light';
+    font-size: 18px;
+    /* Flexbox to center text, padding to adjust vertically */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 6px; /* Visually moves text up by ~2px */
+    box-sizing: border-box;
+}
+
+.image-button:hover {
+    border-image-source: url('content/textures/ui/Settings/MenuBarAssets/MenuButtonSelected.png');
+}
+
+/* -- Confirmation Dialog (used for Reset, etc.) -- */
+
+.toggle-switch-control {
+    width: 250px;
+    display: flex;
+    justify-content: flex-end; /* Align to the right */
+    align-items: center;
+    position: relative;
+}
+
+.toggle-switch {
+    width: 70px;
+    height: 30px;
+    position: relative;
+    cursor: pointer;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    transition: background-image 0.2s ease-in-out;
+}
+
+.toggle-switch.off {
+    background-image: url('content/textures/ui/Settings/ToggleSwitchOff.png');
+}
+
+.toggle-switch.on {
+    background-image: url('content/textures/ui/Settings/ToggleSwitchOn.png');
+}
+
+.toggle-switch-knob {
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    background-image: url('content/textures/ui/Settings/ToggleSwitchKnob.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: left 0.2s ease-in-out;
+}
+
+.toggle-switch.off .toggle-switch-knob {
+    left: -1px;
+}
+
+.toggle-switch.on .toggle-switch-knob {
+    left: 27px; /* (48px width - 21px knob) */
+}
+.setting-row:hover .toggle-switch {
+    background-color: rgba(163, 162, 165, 0.7); /* Slightly more opaque */
+}
+/* Re-apply transition in case it's overridden elsewhere */
+.toggle-switch {
+    transition: background-color 0.2s;
+}
+
+.confirmation-dialog {
+    position: absolute;
+    bottom: 90px;
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 101; /* Above the settings menu */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    justify-content: center;
+    align-items: center;
+}
+
+.dialog-content {
+    background-color: #292929;
+    padding: 30px;
+    border-radius: 5px;
+    text-align: center;
+    color: white;
+    font-family: 'Source Sans Pro', sans-serif;
+    border: 1px solid #555;
+    width: 400px;
+}
+
+.dialog-content p {
+    margin: 0 0 20px;
+    font-family: 'Source Sans Pro Bold';
+    font-size: 22px;
+}
+
+.dialog-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.dialog-button {
+    background-color: transparent;
+    border-style: solid;
+    border-image-slice: 8 fill;
+    border-image-width: 8px;
+    border-image-source: url('content/textures/ui/Settings/MenuBarAssets/MenuButton.png');
+    color: white;
+    cursor: pointer;
+    width: 160px;
+    height: 50px;
+    font-family: 'Source Sans Pro Bold';
+    font-size: 18px;
+}
+
+.dialog-button:hover {
+    border-image-source: url('content/textures/ui/Settings/MenuBarAssets/MenuButtonSelected.png');
+} 
+
+.bottom-bar-button:hover {
+    border-image-source: url('content/textures/ui/Settings/MenuBarAssets/MenuButtonSelected.png');
+} 
+html, body {
+    background-color: transparent !important;
+}
+
+#topbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 36px;
+    background-color: rgba(31, 31, 31, 0.5); /* Updated with transparency */
+    color: rgb(255, 255, 255);
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Pushes left and right sides apart */
+    padding: 0 10px 0 0; /* Removed left padding */
+    box-sizing: border-box;
+    user-select: none; /* Disable text selection */
+    cursor: default;   /* Set default cursor for the bar */
+    -webkit-font-smoothing: none;      /* For sharp text rendering in Chrome/Safari */
+    -moz-osx-font-smoothing: grayscale;  /* For sharp text rendering in Firefox */
+    z-index: 101; /* Ensure topbar is above the settings shield */
+    position: relative; /* Establish a stacking context */
+}
+
+#topbar-left {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+#topbar-right {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.topbar-button {
+    width: 50px;
+    height: 36px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: pointer;
+}
+
+#menu-button {
+    background-image: url('content/textures/ui/Menu/Hamburger.png');
+    background-size: auto;
+}
+
+.settings-visible #menu-button {
+    background-image: url('content/textures/ui/Menu/HamburgerDown.png');
+    background-size: auto;
+}
+
+#player-info {
+    position: relative;
+    width: 170px; /* USERNAME_CONTAINER_WIDTH */
+    height: 100%;
+}
+
+#username {
+    position: absolute;
+    bottom: 13px; /* Aligns this element from the bottom */
+    left: 7px;
+    width: calc(100% - 14px);
+    height: 18px;
+    font-family: 'Source Sans Pro Bold';
+    font-size: 12px;
+    line-height: 18px;
+    text-align: right; /* Default to right on narrow screens */
+}
+
+#account-age-text {
+    position: absolute;
+    bottom: 6px; /* Aligns this element from the bottom */
+    left: 7px;
+    width: calc(100% - 14px);
+    height: 9px;
+    font-family: 'Source Sans Pro Light';
+    font-size: 10px;
+    line-height: 9px; /* Match height */
+    color: white;
+    text-align: right; /* Default to right on narrow screens */
+}
+
+@media (min-width: 768px) {
+    #username,
+    #account-age-text {
+        text-align: left; /* Switch to left on wide screens */
+    }
+}
+
+/* Remove old icon styles */
+#account-age-icon.under-13 {
+    display: none;
+}
+
+#account-age-icon.over-13 {
+    display: none;
+}
+
+#topbar-right .topbar-button {
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+#chat-button {
+    background-image: url('content/textures/ui/Chat/Chat.png');
+    background-size: auto;
+}
+
+#chat-button.chat-button-on {
+    background-image: url('content/textures/ui/Chat/ChatDown.png');
+}
+
+#backpack-button {
+    background-image: url('content/textures/ui/Backpack/Backpack.png');
+    background-size: auto;
+}
+
+#backpack-button.backpack-button-on {
+    background-image: url('content/textures/ui/Backpack/Backpack_Down.png');
+}
+
+/* For the hurt overlay, which is not part of the topbar but related */
+#hurt-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('https://www.roblox.com/asset/?id=34854607'); /* This URL might not work directly */
+    background-size: cover;
+    display: none; /* Hidden by default */
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+/* Styles for the Version Info Container */
+
+#version-container {
+    display: none; /* Hidden by default, shown by JS */
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 26px;
+    background-color: rgba(41, 41, 41, 0.2); /* BackgroundColor3 with BackgroundTransparency=0.2 */
+    z-index: 5;
+    box-sizing: border-box;
+    padding: 0 10px;
+    align-items: center;
+}
+
+.version-label {
+    flex: 1;
+    font-family: 'Source Sans Pro Light'; /* SourceSans font */
+    font-size: 14px;
+    color: white;
+    background-color: transparent;
+}
+
+#server-version-label {
+    text-align: left;
+}
+
+#environment-label {
+    text-align: center;
+}
+
+#client-version-label {
+    text-align: right;
+}

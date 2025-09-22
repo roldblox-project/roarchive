@@ -1,0 +1,101 @@
+/* Font Declarations for ROHTML Project */
+
+@font-face {
+    font-family: 'Source Sans Pro Light';
+    src: url('../content/fonts/SourceSansPro-Light.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Source Sans Pro Italic';
+    src: url('../content/fonts/SourceSansPro-It.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Source Sans Pro';
+    src: url('../content/fonts/SourceSansPro-Regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Source Sans Pro Semibold';
+    src: url('../content/fonts/SourceSansPro-Semibold.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Source Sans Pro Bold';
+    src: url('../content/fonts/SourceSansPro-Bold.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Gotham SSm Book';
+    src: url('../content/fonts/GothamSSm-Book.otf') format('opentype');
+}
+
+@font-face {
+    font-family: 'Gotham SSm Medium';
+    src: url('../content/fonts/GothamSSm-Medium.otf') format('opentype');
+}
+
+@font-face {
+    font-family: 'Gotham SSm Bold';
+    src: url('../content/fonts/GothamSSm-Bold.otf') format('opentype');
+}
+
+@font-face {
+    font-family: 'Gotham SSm Black';
+    src: url('../content/fonts/GothamSSm-Black.otf') format('opentype');
+}
+
+@font-face {
+    font-family: 'Arial';
+    src: url('../content/fonts/arial.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Arial Bold';
+    src: url('../content/fonts/arialbd.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Zekton';
+    src: url('../content/fonts/zekton_rg.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Roman Antique';
+    src: url('../content/fonts/RomanAntique.otf') format('opentype');
+}
+
+@font-face {
+    font-family: 'Guru';
+    src: url('../content/fonts/Guru-Regular.otf') format('opentype');
+}
+
+@font-face {
+    font-family: 'Press Start 2P';
+    src: url('../content/fonts/PressStart2P-Regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Highway Gothic';
+    src: url('../content/fonts/HWYGOTH.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Inconsolata';
+    src: url('../content/fonts/Inconsolata-Regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Balthazar';
+    src: url('../content/fonts/Balthazar-Regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Comic Neue Bold';
+    src: url('../content/fonts/ComicNeue-Angular-Bold.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Accanthis ADF Std';
+    src: url('../content/fonts/AccanthisADFStd-Regular.otf') format('opentype');
+} 
